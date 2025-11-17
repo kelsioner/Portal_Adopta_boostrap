@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="Portal Adopta" />
+    <title>Contacto - Portal Adopta</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/iconos-vectores/paw.svg" />
+  </head>
+
+  <body>
+    <div class="frame">
+      <header class="header" role="banner">
+        <div class="imagen-header" aria-hidden="true"></div>
+        <h1 class="title">
+          <a href="../index.html">PORTAL ADOPTA</a>
+        </h1>
+      </header>
+
+      <main>
+        <section class="main-section">
+          <div class="contact-form-container">
+            <h2 class="contact-title">Contacto</h2>
+
+            <form class="contact-form" id="form-contacto" novalidate>
+              <label for="nombre-apellidos" class="form-label"
+                >Nombre y apellidos</label
+              >
+              <input
+                type="text"
+                id="nombre-apellidos"
+                name="nombre-apellidos"
+                class="form-input"
+                placeholder="María Gómez"
+                aria-label="Introduce tu nombre y apellidos"
+                required
+              />
+
+              <label for="correo-electronico" class="form-label"
+                >Correo electrónico</label
+              >
+              <input
+                type="email"
+                id="correo-electronico"
+                name="correo-electronico"
+                class="form-input"
+                placeholder="tucorreo@correo.com"
+                aria-label="Introduce tu correo electrónico"
+                required
+              />
+
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                class="form-textarea"
+                placeholder="Escribe aquí tu mensaje"
+                aria-label="Escribe tu mensaje"
+                required
+              ></textarea>
+
+              <button type="submit" id="submit-button" class="btn-enviar">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer role="contentinfo">
+      <div class="footer">
+        <p>Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <div id="confirmacion-overlay" class="confirmacion-overlay">
+      <div class="confirmacion-popup">
+        <p id="confirmacion-texto"></p>
+        <button id="confirmacion-cerrar" class="btn-cerrar-popup">
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <script src="/JAVASCRIPT/contacto.js" defer></script>
+  </body>
+</html>

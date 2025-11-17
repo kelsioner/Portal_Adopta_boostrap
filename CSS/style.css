@@ -1,0 +1,506 @@
+/* Fuentes (Google Fonts) */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap");
+
+/*Guardo los colores de mi web en variables*/
+:root{
+  --bg: #eddfc3;
+  --brown: #a3846c;
+  --brown-dark: #4c3c30;
+  --text: #454545;
+  --light: #f8f0e5;
+  --hover: #d8baa3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /*Hago que mi tamaño de letra sea flexible: como mínimo 14px, idealmente 1.15 del tamaño del viewport (Aumenta el tamaño conforme la pantalla sea más ancha. Pero añade 0.5px extra para suavizar la escala) y como máximo 20 pixeles*/
+  font-size: clamp(0.8rem, 1.15vw + 0.5px, 3rem);
+  /*Fuerzo que en los navegadores el tamaño de letra no aumentan automáticamente y respete mi CSS para que sean legibles y no se salgan de mi responive*/
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Fredoka", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  /*Creo una grid para ajustar mi footer al final de pagina estático*/
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+  align-items: end;
+}
+
+/* Contenido Principal */
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+}
+
+/* header */
+.header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.header .imagen-header {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background-image: url(/img/imagen_cabecera.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5) blur(5px);
+  z-index: 1;
+}
+
+.title {
+  font-family: "Fascinate Inline", cursive;
+  font-size: clamp(2rem, 4vw, 4rem);
+  color: var(--bg);
+  position: relative;
+  z-index: 2;
+}
+
+/* Estilo para el enlace <a> dentro del <h1> ELIMINA EL COLOR POR DEFECTO DEL LINK */
+.title a {
+  color: inherit;
+  /* Hereda el color #eddfc3 del h1 */
+  text-decoration: none;
+  /* Quita el subrayado del enlace */
+}
+
+.title a:hover {
+  text-decoration: none;
+  color: var(--hover);
+}
+
+.quienes-somos {
+  text-align: center;
+  max-width: 85%;
+  margin: 2.5rem auto 1rem auto;
+}
+
+.quienes-somos .text-wrapper {
+  font-family: "Fredoka One", cursive;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.quienes-somos .p {
+  line-height: 1.6;
+}
+
+/* Botón de Contacto */
+.contacto {
+  position: absolute;
+  top: 1.5rem;
+  right: 6.3rem;
+}
+
+.contacto .text-wrapper-2 {
+  display: block;
+  background-color: var(--brown);
+  color: var(--brown-dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: "Fredoka One", cursive;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.contacto .text-wrapper-2:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* tarjetas */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.card {
+  background-color: var(--brown);
+  width: clamp(14rem, 20vw, 18rem);
+  height: clamp(14rem, 20vw, 18rem);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centra el contenido verticalmente */
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: inherit;
+  text-decoration: none;
+  /* Sin subrayado */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card .card-icon-container {
+  order: 1;
+  /* El icono va primero */
+}
+
+.card .card-title {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.2rem;
+  color: var(--bg);
+  text-shadow: var(--brown-dark) 1px 1px 2px;
+  order: 2;
+  line-height: 1.3;
+}
+
+.card .icon-svg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/*Contacto*/
+.main-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Estilo de la caja */
+.contact-form-container {
+  background-color: #a3846c;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-title {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.7rem;
+  color: #eddfc3;
+  text-shadow: #4c3c30 1px 1px 2px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-label {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  color: #f8f0e5;
+  font-weight: 500;
+  margin-bottom: -5px;
+  /* Acerca la etiqueta al input */
+}
+
+/* Estilo común para input y textarea */
+.form-input,
+.form-textarea {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f8f0e5;
+  color: #454545;
+  width: 100%;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* --- Estilos del Popup --- */
+
+.confirmacion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(40, 30, 20, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.confirmacion-popup {
+  background-color: var(--light);
+  color: var(--text);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.confirmacion-popup p {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.btn-cerrar-popup {
+  font-family: "Fredoka One", cursive;
+  font-size: 1rem;
+  color: #f8f0e5;
+  background-color: #a3846c;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-cerrar-popup:hover {
+  transform: translateY(-2px);
+}
+
+/*Notificaciones*/
+.notificaciones-box {
+  background-color: var(--brown);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+}
+
+/* Título del formulario */
+.notificaciones-box h3 {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.5rem;
+  color: var(--bg);
+  text-shadow: var(--brown-dark) 1px 1px 2px;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+.notificaciones-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* Espacio entre label, input y botón */
+}
+
+/* Campo de texto para el email */
+.notificaciones-box input[type="email"] {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f8f0e5;
+  color: #454545;
+  width: 100%;
+}
+
+.notificaciones-box input[type="email"]::placeholder {
+  color: #999;
+}
+
+/* Botón "Enviar" */
+.btn-enviar {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background-color: #6c5a4c;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-enviar:hover {
+  background-color: var(--brown-dark);
+}
+
+/* Quita el subrayado y color azul del enlace en el título */
+.title a {
+  text-decoration: none;
+  /* Quita el subrayado */
+  color: inherit;
+  /* Hereda el color del título */
+}
+
+
+
+/* Footer */
+.footer {
+  width: 100%;
+  background-color: var(--brown);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Responsive */
+
+/* PANTALLA MUY GRANDE */
+@media (max-width: 2560px) {
+  .header {
+    height: 200px;
+  }
+  .contact-form-container {
+    width: 60%;
+  }
+}
+
+/* PANTALLA GRANDE */
+@media (max-width: 1440px) {
+  .header {
+    height: 140px;
+  }
+  .contact-form-container {
+    width: 70%;
+  }
+}
+
+/* PANTALLA NORMAL */
+@media (max-width: 912px) {
+  .cards-container {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header {
+    min-height: 120px;
+  }
+  .contact-form-container {
+    width: 80%;
+  }
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+  .header {
+    min-height: 100px;
+  }
+  .quienes-somos {
+    max-width: 90%;
+  }
+  .contact-form-container {
+    width: 85%;
+  }
+}
+
+/* MOVIL */
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+
+  .header {
+    padding: 2rem 1rem;
+    min-height: 80px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .contacto {
+    position: static;
+    text-align: center;
+    margin-bottom: 1.5rem; /* Reposicionamos el botón de contacto en móviles */
+
+  }
+
+  .quienes-somos {
+    margin: 1.5rem auto auto auto;
+    max-width: 100%;
+  }
+
+  .quienes-somos .text-wrapper {
+    font-size: 1.5rem;
+  }
+
+  .quienes-somos .p {
+    font-size: 0.95rem;
+  }
+
+  .cards-container {
+    flex-direction: column; /* Las tarjetas se apilan en una sola columna */
+
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 300px;
+    height: 180px;
+  }
+
+  .main-section {
+    padding: 0.7rem;
+  }
+  .contact-form-container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .main-container {
+    padding: 1rem;
+    align-items: flex-start;
+    /* Alinear arriba en móvil */
+  }
+
+  .notificaciones-box {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .notificaciones-box h3 {
+    font-size: 1.25rem;
+  }
+}

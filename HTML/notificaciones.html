@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notificaciones - Portal Adopta</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/iconos-vectores/paw.svg" />
+  </head>
+
+  <body>
+    <div class="frame">
+      <header class="header" role="banner">
+        <div class="imagen-header" aria-hidden="true"></div>
+        <h1 class="title">
+          <a href="../index.html">PORTAL ADOPTA</a>
+        </h1>
+      </header>
+
+      <main>
+        <section class="main-section">
+          <div class="notificaciones-box">
+            <h3 id="notificaciones-titulo">
+              Recibe notificaciones directamente en tu correo electrónico
+            </h3>
+
+            <form
+              action="#"
+              method="POST"
+              aria-labelledby="notificaciones-titulo"
+              novalidate
+            >
+              <label for="email-notificaciones"></label>
+
+              <input
+                type="email"
+                id="email-notificaciones"
+                name="email"
+                placeholder="tucorreo@correo.com"
+                required
+                aria-label="Correo electrónico para notificaciones"
+              />
+
+              <button type="submit" class="btn-enviar" id="submit-button">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer role="contentinfo">
+      <div class="footer">
+        <p>Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <div id="confirmacion-overlay" class="confirmacion-overlay">
+      <div class="confirmacion-popup">
+        <p id="confirmacion-texto"></p>
+        <button id="confirmacion-cerrar" class="btn-cerrar-popup">
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <script src="/JAVASCRIPT/notificaciones.js"></script>
+  </body>
+</html>
