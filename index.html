@@ -1,100 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <meta name="description" content="Portal Adopta" />
-    <title>Portal Adopta</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <link rel="icon" type="image/svg+xml" href="/iconos-vectores/paw.svg" />
-  </head>
 
-  <body>
-    <div class="frame">
-      <header class="header" role="banner">
-        <div class="imagen-header" aria-hidden="true"></div>
-        <h1 class="title">PORTAL ADOPTA</h1> 
-      </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portal Adopta" />
+  <title>Portal Adopta</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/style.css" />
+  <link rel="icon" type="image/svg+xml" href="/iconos-vectores/paw.svg" />
+</head>
 
-      <main>
-        <nav class="contacto" aria-label="Navegación de contacto">
-          <a href="/HTML/contacto.html" class="text-wrapper-2">Contacto</a>
-        </nav>
-        <section class="quienes-somos" aria-labelledby="quienes-somos-heading">
-          <h2 class="text-wrapper" id="quienes-somos-heading">
-            ¿Quiénes somos?
-          </h2>
-          <p class="p">
-            Somos una organización sin animo de lucro a la que le importan esos
-            peludos que no siempre tienen la suerte de tener una familia, aquí
-            les brindamos un hogar, cariño, alimento y la posibilidad de
-            encontrar una familia que les de el mismo amor que ellos son
-            capacesde ofrecer.
-          </p>
-        </section>
+<body>
+  <div class="frame w-100">
+    
+    <header class="header">
+      <div class="imagen-header" aria-hidden="true"></div>
+      <h1 class="title">
+          <a href="index.html">PORTAL ADOPTA</a>
+      </h1>
+    </header>
 
-        <div class="cards-container">
-          <a
-            href="/HTML/notificaciones.html"
-            class="card"
-            aria-labelledby="recibe-heading"
-          >
-            <h3 class="card-title" id="recibe-heading">
-              Recibe notificaciones
-            </h3>
-            <div class="card-icon-container">
-              <img
-                class="icon-svg"
-                src="https://c.animaapp.com/zgs6J9Zc/img/attach-ring-24dp-e3e3e3-fill0-wght400-grad0-opsz24-1.svg"
-                alt="Icono de notificaciones"
-              />
-            </div>
-          </a>
-
-          <section class="card" aria-labelledby="donaciones-heading">
-            <h3 class="card-title" id="donaciones-heading">Donaciones</h3>
-            <div class="card-icon-container">
-              <img
-                class="icon-svg"
-                src="https://c.animaapp.com/zgs6J9Zc/img/attach-money-24dp-e3e3e3-fill0-wght400-grad0-opsz24-1.svg"
-                alt="Icono de donaciones"
-              />
-            </div>
-          </section>
-
-          <section class="card" aria-labelledby="publica-adopcion-heading">
-            <h3 class="card-title" id="publica-adopcion-heading">
-              Publica una adopción
-            </h3>
-            <div class="card-icon-container">
-              <img
-                class="icon-svg"
-                src="https://c.animaapp.com/zgs6J9Zc/img/vector.svg"
-                alt="Icono de megáfono para publicar adopción"
-              />
-            </div>
-          </section>
-
-          <section class="card" aria-labelledby="necesitan-hogar-heading">
-            <h3 class="card-title" id="necesitan-hogar-heading">
-              Necesitan<br />hogar
-            </h3>
-            <div class="card-icon-container">
-              <img
-                class="icon-svg"
-                src="https://c.animaapp.com/zgs6J9Zc/img/vector-1.svg"
-                alt="Icono de casa para hogar"
-              />
-            </div>
-          </section>
+    <main>
+      <nav class="navbar navbar-expand-lg w-100 pt-3" aria-label="Menú principal">
+        <div class="container-fluid px-4 justify-content-end">
+          
+          <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center mt-3 mt-lg-0">
+              <li class="nav-item">
+                <a href="/HTML/contact.html" class="nav-link nav-btn-custom">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a href="/HTML/login.html" class="nav-link nav-btn-custom ms-lg-3">Iniciar Sesión</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </main>
-    </div>
+      </nav>
 
-    <footer role="contentinfo">
-      <div class="footer">
-        <p>Portal Adopta 2025 ©<br />Todos los derechos resrevados.</p>
+      <section class="container quienes-somos my-4" aria-labelledby="quienes-somos-heading">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="text-wrapper" id="quienes-somos-heading">¿Quiénes somos?</h2>
+            <p class="p">
+              Somos una organización sin animo de lucro a la que le importan esos
+              peludos que no siempre tienen la suerte de tener una familia, aquí
+              les brindamos un hogar, cariño, alimento y la posibilidad de
+              encontrar una familia que les de el mismo amor que ellos son
+              capaces de ofrecer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="container pb-5">
+        <div class="row g-4 justify-content-center">
+          
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/HTML/notifications.html" class="card custom-card" aria-labelledby="recibe-heading">
+              <div class="card-body">
+                <div class="card-icon-container mb-3">
+                  <img class="icon-svg" src="https://c.animaapp.com/zgs6J9Zc/img/attach-ring-24dp-e3e3e3-fill0-wght400-grad0-opsz24-1.svg" alt="Notificaciones" />
+                </div>
+                <h3 class="card-title m-0" id="recibe-heading">Recibe notificaciones</h3>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/HTML/donate.html" class="card custom-card" aria-labelledby="donaciones-heading">
+              <div class="card-body">
+                <div class="card-icon-container mb-3">
+                  <img class="icon-svg" src="https://c.animaapp.com/zgs6J9Zc/img/attach-money-24dp-e3e3e3-fill0-wght400-grad0-opsz24-1.svg" alt="Donaciones" />
+                </div>
+                <h3 class="card-title m-0" id="donaciones-heading">Donaciones</h3>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/HTML/publish.html" class="card custom-card" aria-labelledby="publica-heading">
+              <div class="card-body">
+                <div class="card-icon-container mb-3">
+                  <img class="icon-svg" src="https://c.animaapp.com/zgs6J9Zc/img/vector.svg" alt="Publicar" />
+                </div>
+                <h3 class="card-title m-0" id="publica-heading">Publica una adopción</h3>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/HTML/select-pet.html" class="card custom-card" aria-labelledby="hogar-heading">
+              <div class="card-body">
+                <div class="card-icon-container mb-3">
+                  <img class="icon-svg" src="https://c.animaapp.com/zgs6J9Zc/img/vector-1.svg" alt="Necesitan hogar" />
+                </div>
+                <h3 class="card-title m-0" id="hogar-heading">Necesitan hogar</h3>
+              </div>
+            </a>
+          </div>
+
+        </div>
       </div>
-    </footer>
-  </body>
+    </main>
+  </div>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container text-center">
+      <p class="m-0">Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
