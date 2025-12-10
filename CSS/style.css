@@ -17,7 +17,7 @@
   --white: #ffffff;
   --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
-  
+
   --font-main: "Fredoka", sans-serif;
   --font-display: "Fredoka One", cursive;
   --font-title: "Fascinate Inline", cursive;
@@ -35,14 +35,20 @@ body {
   flex-direction: column;
 }
 
-a { text-decoration: none; color: inherit; }
-a:hover { color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-/* Wrapper principal para empujar el footer abajo */
+a:hover {
+  color: inherit;
+}
+
+/* Empujar el footer abajo */
 .frame {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================================
@@ -61,7 +67,10 @@ a:hover { color: inherit; }
 
 .imagen-header {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('/img/imagen_cabecera.jpg');
   background-size: cover;
   background-position: center;
@@ -74,6 +83,7 @@ a:hover { color: inherit; }
   z-index: 2;
   margin: 0;
   line-height: 1;
+  text-align: center;
 }
 
 .title a {
@@ -132,18 +142,14 @@ a:hover { color: inherit; }
   box-shadow: var(--shadow-hover);
 }
 
-@media (max-width: 991px) {
-    .nav-btn-custom {
-        margin: 0.5rem 0;
-        width: 100%;
-    }
-}
+
 
 .custom-toggler {
-    border-color: var(--brown-dark) !important;
+  border-color: var(--brown-dark) !important;
 }
+
 .custom-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(76, 60, 48, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(76, 60, 48, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* =========================================
@@ -196,8 +202,8 @@ a:hover { color: inherit; }
 /* 1. El contenedor con perspectiva */
 .pet-flip-card {
   width: 100%;
-  aspect-ratio: 4 / 5; /* <-- AÑADE ESTA LÍNEA PARA MANTENER LA PROPORCIÓN */
-  perspective: 1000px; /* Efecto 3D */
+  aspect-ratio: 4 / 5;
+  perspective: 1000px;
   cursor: pointer;
 }
 
@@ -207,8 +213,8 @@ a:hover { color: inherit; }
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  -webkit-backface-visibility: hidden; /* Compatibilidad Safari */
-  backface-visibility: hidden; /* Oculta la cara trasera al girar */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   transition: transform 1s;
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -231,33 +237,40 @@ a:hover { color: inherit; }
 .pet-back {
   background-color: var(--brown);
   color: var(--light);
-  transform: rotateY(180deg); /* Empieza girada */
+  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 0 1rem;
 }
 
 .pet-back h3 {
   font-family: var(--font-display);
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
   color: var(--bg);
   text-shadow: 1px 1px 2px var(--brown-dark);
 }
 
 .pet-back h4 {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
   opacity: 0.9;
 }
 
 .pet-description {
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 1.5rem;
-  padding: 0 10px; 
+  font-size: 0.75rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  padding: 0 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 5. El efecto Hover (La rotación) */
@@ -271,11 +284,12 @@ a:hover { color: inherit; }
 
 /* Botón "Conóceme" dentro de la tarjeta */
 .btn-conoce {
+  font-size: 0.8rem;
   background-color: var(--brown-dark);
   color: var(--white);
   border: none;
-  padding: 0.5rem 2rem;
-  border-radius: 20px;
+  padding: 0.5rem 1.8rem;
+  border-radius: 18px;
   font-family: var(--font-display);
   transition: background-color 0.2s;
   text-decoration: none;
@@ -326,15 +340,11 @@ a:hover { color: inherit; }
   border-radius: 8px;
   font-family: var(--font-display);
 }
+
 .btn-adoptar:hover {
   background-color: var(--white);
 }
 
-@media (max-width: 768px) {
-  .detail-img { border-right: none; border-bottom: 4px solid var(--bg); height: 250px;}
-  .btn-adoptar { align-self: center; }
-  .detail-info { text-align: center; }
-}
 
 /* =========================================
    FORMULARIOS
@@ -348,7 +358,7 @@ a:hover { color: inherit; }
   width: 100%;
 }
 
-.form-container-brown h2, 
+.form-container-brown h2,
 .form-container-brown h3 {
   font-family: var(--font-display);
   text-align: center;
@@ -401,6 +411,7 @@ a:hover { color: inherit; }
   cursor: pointer;
   transition: transform 0.2s;
 }
+
 .btn-submit:hover {
   background-color: var(--bg);
   color: var(--brown-dark);
@@ -449,18 +460,28 @@ a:hover { color: inherit; }
   margin-top: auto;
   width: 100%;
 }
-.footer p { margin: 0; font-size: 0.8rem; }
+
+.footer p {
+  margin: 0;
+  font-size: 0.8rem;
+}
 
 /* =========================================
    POPUPS
    ========================================= */
 .confirmacion-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  justify-content: center; align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
+
 .confirmacion-popup {
   background-color: var(--light);
   padding: 2rem;
@@ -468,6 +489,7 @@ a:hover { color: inherit; }
   text-align: center;
   max-width: 90%;
 }
+
 .btn-cerrar-popup {
   margin-top: 1rem;
   background-color: var(--brown);
@@ -476,4 +498,91 @@ a:hover { color: inherit; }
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================= */
+
+@media (max-width: 574px) {
+  .pet-back h3 {
+    font-size: 1.8rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Edad */
+  .pet-back h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .pet-description {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    -webkit-line-clamp: 8;
+  }
+
+  .detail-img {
+    border-right: none;
+    border-bottom: 4px solid var(--bg);
+    height: 250px;
+  }
+
+  .btn-adoptar {
+    align-self: center;
+  }
+
+  .detail-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .pet-back h3 {
+    font-size: 1.8rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Edad */
+  .pet-back h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .pet-description {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    -webkit-line-clamp: 8;
+  }
+}
+
+@media (max-width: 350px){
+.pet-back h3 {
+    font-size: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Edad */
+  .pet-back h4 {
+    font-size: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .pet-description {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    -webkit-line-clamp: 8;
+  }
+
+}
+
+
+@media (max-width: 991px) {
+  .nav-btn-custom {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
 }
