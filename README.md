@@ -91,4 +91,3 @@ Todo el desarrollo frontend debe adherirse a la siguiente guía de estilo para m
 ## 🧑‍🎨 Créditos
 
 * **Diseño UI/UX y Guía de Estilo:** Paula Nuñez Ramos.
-# PortalAdopta-boostrap
