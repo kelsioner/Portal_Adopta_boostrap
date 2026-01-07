@@ -71,7 +71,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/img/imagen_cabecera.jpg');
+  background-image: url("/img/imagen_cabecera.jpg");
   background-size: cover;
   background-position: center;
   filter: brightness(0.5) blur(3px);
@@ -141,8 +141,6 @@ a:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
-
-
 
 .custom-toggler {
   border-color: var(--brown-dark) !important;
@@ -345,7 +343,6 @@ a:hover {
   background-color: var(--white);
 }
 
-
 /* =========================================
    FORMULARIOS
    ========================================= */
@@ -399,22 +396,47 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+/* =========================================
+   BOTONES UNIFICADOS (IDENTIDAD VISUAL)
+   ========================================= */
+
 .btn-submit {
   width: 100%;
-  background-color: var(--brown-dark);
+  background-color: var(--brown-dark); /* Color base: Marrón oscuro */
   color: var(--white);
-  padding: 0.8rem;
-  border: none;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-family: var(--font-display);
   font-size: 1.1rem;
   cursor: pointer;
-  transition: transform 0.2s;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease; /* Transición suave para color y movimiento */
+  box-shadow: var(--shadow-card);
 }
 
+/* ESTILO HOVER UNIFICADO */
 .btn-submit:hover {
-  background-color: var(--bg);
-  color: var(--brown-dark);
+  background-color: var(--brown);
+  color: var(--white) !important;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ESTILO ACTIVE (Cuando se hace clic) */
+.btn-submit:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Ajuste para el botón de la "X" para que no herede el tamaño pero sí la lógica */
+#btn-remove-photo {
+  transition: all 0.2s ease;
+}
+#btn-remove-photo:hover {
+  transform: scale(1.1);
+  background-color: #a02d22 !important;
 }
 
 /* =========================================
@@ -447,6 +469,106 @@ a:hover {
 
 .choice-circle:hover .choice-icon {
   fill: var(--light);
+}
+
+/* =========================================
+   ESTILOS ESPECÍFICOS PARA DONACIONES
+   ========================================= */
+
+/* Contenedor principal marrón oscuro */
+.donation-box {
+  background-color: var(--brown);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-hover);
+}
+
+/* Tarjetas claras interiores (Datos e Importe) */
+.inner-card {
+  background-color: var(--bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  color: var(--text);
+}
+
+/* Botones de cantidad (5€, 10€, etc.) */
+.btn-amount {
+  background-color: var(--white);
+  border: 2px solid transparent;
+  color: var(--brown-dark);
+  font-family: var(--font-display);
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-card);
+}
+
+.btn-amount:hover,
+.btn-amount.active {
+  background-color: var(--brown-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Pestañas de frecuencia (Única, Mensual, Anual) */
+.nav-tabs-donation {
+  border-bottom: none;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.nav-tabs-donation .nav-link {
+  background-color: var(--white);
+  color: var(--text);
+  border: 1px solid #ccc;
+  font-family: var(--font-main);
+  border-radius: 5px !important;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav-tabs-donation .nav-link.active {
+  background-color: var(--brown-dark) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--brown-dark) !important;
+  font-weight: bold;
+}
+
+/* Tarjetas de Métodos de Pago */
+.payment-grid-card {
+  background-color: var(--bg);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 110px;
+  border: none;
+}
+
+/* Limita el ancho de la cuadrícula de pagos para que el 2x2 se vea centrado y elegante */
+#step-1 .row {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-grid-card:hover {
+  transform: scale(1.05);
+  background-color: var(--light);
+  box-shadow: var(--shadow-hover);
+}
+
+.payment-grid-card img,
+.payment-grid-card svg {
+  max-height: 50px;
+  max-width: 80%;
+  object-fit: contain;
 }
 
 /* =========================================
@@ -558,8 +680,8 @@ a:hover {
   }
 }
 
-@media (max-width: 350px){
-.pet-back h3 {
+@media (max-width: 350px) {
+  .pet-back h3 {
     font-size: 1rem;
     margin-top: 0.8rem;
   }

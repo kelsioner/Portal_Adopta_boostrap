@@ -4,15 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portal Adopta" />
-    <title>Publish - Portal Adopta</title>
+    <title>Publicar Adopción - Portal Adopta</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/style.css" />
     <link rel="icon" type="image/svg+xml" href="/iconos-vectores/paw.svg" />
 </head>
 
 <body>
-    <div class="frame">
+    <div class="frame w-100">
+
         <header class="header">
             <div class="imagen-header" aria-hidden="true"></div>
             <h1 class="title">
@@ -20,28 +21,109 @@
             </h1>
         </header>
 
-        <main>
+        <main class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <form id="form-publicar" class="donation-box shadow-lg px-4 py-5">
 
+                        <div class="inner-card mb-4 shadow-sm">
+                            <h2 class="h4 text-center mb-4" style="font-family: var(--font-display);">Datos personales
+                            </h2>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label-custom">Nombre y apellidos</label>
+                                    <input type="text" id="nombre-publicador" class="form-input-custom"
+                                        placeholder="María Gómez">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label-custom">Correo electrónico</label>
+                                    <input type="email" id="email-publicador" class="form-input-custom"
+                                        placeholder="tucorreo@example.com">
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="inner-card shadow-sm">
+                            <h2 class="h4 text-center mb-4" style="font-family: var(--font-display);">Información del
+                                peludo</h2>
 
+                            <div class="nav nav-tabs-donation mb-4">
+                                <button type="button" class="nav-link active flex-fill btn-tipo"
+                                    data-tipo="Perro">PERRO</button>
+                                <button type="button" class="nav-link flex-fill btn-tipo" data-tipo="Gato">GATO</button>
+                            </div>
 
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Provincia</label>
+                                    <select id="provincia" class="form-input-custom">
+                                        <option value="">-Selecciona-</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Localidad</label>
+                                    <select id="localidad" class="form-input-custom" disabled>
+                                        <option value="">-Selecciona-</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="mb-4">
+                                <label class="form-label-custom">Estado del animal</label>
+                                <textarea id="estado-animal" class="form-input-custom" style="height: 120px;"
+                                    placeholder="Describe detalladamente el estado y dónde fue encontrado..."></textarea>
+                            </div>
 
+                            <div class="mb-2">
+                                <label class="form-label-custom">Imagen del animal</label>
+                                <div id="preview-container"
+                                    class="mb-3 d-flex align-items-center justify-content-center"
+                                    style="width: 100%; height: 380px; background: var(--light); border-radius: 12px; border: 2px dashed var(--brown); overflow: hidden; position: relative;">
 
+                                    <svg width="80" height="80" fill="var(--brown)" viewBox="0 0 16 16"
+                                        id="preview-icon">
+                                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        <path
+                                            d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                                    </svg>
 
+                                    <button type="button" id="btn-remove-photo"
+                                        style="display: none; position: absolute; top: 15px; right: 15px; background: rgba(192, 57, 43, 0.9); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-weight: bold; cursor: pointer; z-index: 10; font-size: 1.3rem;">✕</button>
+                                </div>
 
+                                <input type="file" id="input-foto" style="display: none;" accept="image/*">
+                                <button type="button" class="btn-submit py-3 w-100"
+                                    onclick="document.getElementById('input-foto').click()">
+                                    Seleccionar foto
+                                </button>
+                            </div>
+                        </div>
 
-
-
-            
+                        <div class="text-center mt-5">
+                            <button type="submit" id="submit-button" class="btn-submit py-3">
+                                Publicar adopción ahora
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
+
+        <footer class="footer mt-auto py-3">
+            <div class="container text-center">
+                <p class="m-0">Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <p>Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
-    </footer>
+    <div id="confirmacion-overlay" class="confirmacion-overlay" style="display: none;">
+        <div class="confirmacion-popup">
+            <p id="confirmacion-texto"></p>
+            <button id="confirmacion-cerrar" class="btn-cerrar-popup">Cerrar</button>
+        </div>
+    </div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="/JAVASCRIPT/publish.js"></script>
 </body>
 
 </html>
