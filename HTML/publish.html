@@ -99,8 +99,17 @@
                             </div>
                         </div>
 
-                        <div class="text-center mt-5">
-                            <button type="submit" id="submit-button" class="btn-submit py-3">
+                        <div class="mt-4 mb-3 form-check d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="form-check-input me-3" id="check-privacidad" required
+                                style="width: 18px; height: 18px; cursor: pointer;">
+                            <label class="form-check-label" for="check-privacidad" style="cursor: pointer;">
+                                He leído y acepto la <a href="../HTML/privacidad.html" target="_blank"
+                                    class="footer-link"><u>Política de privacidad</u></a>
+                            </label>
+                        </div>
+
+                        <div class="text-center mt-2">
+                            <button type="submit" id="submit-button" class="btn-submit py-3" style="max-width: 450px;">
                                 Publicar adopción ahora
                             </button>
                         </div>
@@ -111,7 +120,15 @@
 
         <footer class="footer mt-auto py-3">
             <div class="container text-center">
-                <p class="m-0">Portal Adopta 2025 ©<br />Todos los derechos reservados.</p>
+                <p class="mb-2">Portal Adopta 2025 © | Todos los derechos reservados.</p>
+
+                <div class="footer-links">
+                    <p>
+                        <a href="../HTML/termsandconditions.html" class="footer-link"><u>Términos y condiciones</u></a>
+                        <span class="separator">|</span>
+                        <a href="../HTML/privacidad.html" class="footer-link"><u>Política de privacidad</u></a>
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
