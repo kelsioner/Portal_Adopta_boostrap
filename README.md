@@ -4,7 +4,7 @@ Este repositorio contiene el código fuente y los recursos para **Portal Adopta*
 
 ## Preview de Pantallas
 
-<img width="1906" height="912" alt="image" src="https://github.com/user-attachments/assets/a05dc175-8176-4ce9-bb03-67be3bfc24e4" />
+<img width="1906" height="912" alt="image" src="https://github.com/user-attachments/assets/a07d47c4-2620-4779-84b1-201ebeebe653" />
 
 Las maquetas del proyecto (incluidas en el archivo `Portal Adopta.jpg`) muestran el flujo de usuario y el diseño de la interfaz, incluyendo:
 * Inicio de sesión y registro de usuario.
