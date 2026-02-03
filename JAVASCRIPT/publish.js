@@ -1,46 +1,48 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // --- REFERENCIAS AL DOM ---
+document.addEventListener("DOMContentLoaded", function () {
+    // --- 1. REFERENCIAS AL DOM ---
+    const form = document.getElementById("form-publicar");
     const provinciaSelect = document.getElementById("provincia");
     const localidadSelect = document.getElementById("localidad");
-    const form = document.getElementById("form-publicar");
-    
-    // Referencias para la imagen y previsualización
+    const nombreInput = document.getElementById("nombre-publicador");
+    const emailInput = document.getElementById("email-publicador");
+    const estadoInput = document.getElementById("estado-animal");
     const fotoInput = document.getElementById("input-foto");
     const previewContainer = document.getElementById("preview-container");
-    const previewIcon = document.getElementById("preview-icon"); // Aseguramos que esté definido
+    const previewIcon = document.getElementById("preview-icon");
     const btnRemovePhoto = document.getElementById("btn-remove-photo");
-
-    // Referencias UI (Botones y Popup)
+    const checkPrivacidad = document.getElementById("check-privacidad");
+    const submitBtn = document.getElementById("submit-button");
     const tipoButtons = document.querySelectorAll(".btn-tipo");
+
+    // Popup Refs
     const overlay = document.getElementById("confirmacion-overlay");
     const popupTexto = document.getElementById("confirmacion-texto");
     const cerrarBoton = document.getElementById("confirmacion-cerrar");
 
-    // Variables de estado
+    let envioExitoso = false;
+    let tipoAnimal = "Perro";
+
+    // Variables para datos
     let provinciasData = [];
     let municipiosData = [];
-    let tipoAnimal = "Perro";
-    let envioExitoso = false;
 
-    // --- 1. CARGA DE DATOS (Provincias y Municipios) ---
-    Promise.all([
-        fetch('../data/communities.json').then(res => res.json()),
-        fetch('../data/towns.json').then(res => res.json())
-    ])
-    .then(([communities, towns]) => {
-        // Extraer provincias de communities.json
-        communities.forEach(comunidad => {
-            comunidad.provinces.forEach(prov => {
-                provinciasData.push({
-                    code: String(prov.code),
-                    name: prov.name
+    // --- 2. CARGA DE DATOS ---
+    if (typeof communitiesDataRaw !== 'undefined' && typeof townsDataRaw !== 'undefined') {
+        // Extraer provincias
+        communitiesDataRaw.forEach(comunidad => {
+            if(comunidad.provinces) {
+                comunidad.provinces.forEach(prov => {
+                    provinciasData.push({
+                        code: String(prov.code),
+                        name: prov.name
+                    });
                 });
-            });
+            }
         });
 
-        municipiosData = towns;
+        municipiosData = townsDataRaw;
 
-        // Poblar el select de provincias (ordenado alfabéticamente)
+        // Ordenar y Poblar
         provinciasData.sort((a, b) => a.name.localeCompare(b.name));
         provinciasData.forEach(prov => {
             const option = document.createElement("option");
@@ -48,17 +50,15 @@ document.addEventListener("DOMContentLoaded", function() {
             option.textContent = prov.name;
             provinciaSelect.appendChild(option);
         });
-    })
-    .catch(err => console.error("Error cargando JSON:", err));
+    }
 
-    // --- 2. FILTRADO DE LOCALIDADES (Usando provinceId) ---
+    // --- 3. FILTRADO DE LOCALIDADES ---
     provinciaSelect.addEventListener("change", function() {
         const selectedProvCode = this.value;
         localidadSelect.innerHTML = '<option value="">-Selecciona-</option>';
         localidadSelect.disabled = true;
 
         if (selectedProvCode) {
-            // Filtramos los municipios según el provinceId del JSON towns.json
             const filtrados = municipiosData.filter(m => String(m.provinceId) === selectedProvCode);
             
             if (filtrados.length > 0) {
@@ -72,60 +72,76 @@ document.addEventListener("DOMContentLoaded", function() {
                 localidadSelect.disabled = false;
             }
         }
+        validarCampo(provinciaSelect, this.value !== "", "error-provincia");
     });
 
-    // --- 3. PREVISUALIZACIÓN DE IMAGEN ---
-    fotoInput.addEventListener("change", function() {
+    localidadSelect.addEventListener("change", function() {
+        validarCampo(localidadSelect, this.value !== "", "error-municipio");
+    });
+
+    // --- 4. FUNCIÓN DE VALIDACIÓN (CRUCIAL: No modificar) ---
+    const validarCampo = (input, condicion, idError, forzarError = false) => {
+        const mensajeError = document.getElementById(idError);
+        if (!mensajeError) return false;
+
+        const valorVacio = input.value ? input.value.trim() === "" : true;
+
+        if (condicion) {
+            // Caso Válido
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            if (input === previewContainer) input.style.borderColor = "var(--brown)";
+            mensajeError.style.display = "none";
+            return true;
+        } else {
+            // Caso Inválido: Solo marcamos si el usuario escribió algo MAL o si pulsó ENVIAR (forzarError)
+            if (!valorVacio || forzarError || input === previewContainer) {
+                input.classList.remove('is-valid');
+                input.classList.add('is-invalid');
+                if (input === previewContainer) input.style.borderColor = "#c0392b";
+                mensajeError.style.display = "block";
+            }
+            return false;
+        }
+    };
+
+    // --- 5. EVENTOS EN TIEMPO REAL ---
+    nombreInput.addEventListener('input', () => validarCampo(nombreInput, nombreInput.value.trim().length >= 3, "error-nombre"));
+    
+    emailInput.addEventListener('input', () => {
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|es)$/i;
+        validarCampo(emailInput, regex.test(emailInput.value), "error-email");
+    });
+    
+    estadoInput.addEventListener('input', () => validarCampo(estadoInput, estadoInput.value.trim().length >= 10, "error-estado"));
+
+    // --- 6. GESTIÓN DE FOTO ---
+    fotoInput.addEventListener("change", function () {
         const file = this.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
-                // Ocultamos el icono central y mostramos el botón de eliminar
-                if(previewIcon) previewIcon.style.display = "none";
-                if(btnRemovePhoto) btnRemovePhoto.style.display = "block";
-                
-                // Cambiamos el estilo del contenedor a sólido
-                previewContainer.style.borderStyle = "solid";
-                
-                // Limpiamos imagen previa si existiera
-                const existingImg = document.getElementById("img-preview-active");
-                if(existingImg) existingImg.remove();
-
-                // Creamos e insertamos la nueva imagen
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.id = "img-preview-active";
-                img.style.cssText = "width: 100%; height: 100%; object-fit: cover; cursor: pointer;";
-                
-                // Permitir cambiar la foto haciendo clic en la previsualización
-                img.onclick = () => fotoInput.click(); 
-                
-                previewContainer.appendChild(img);
-            }
+            reader.onload = function (e) {
+                previewContainer.style.backgroundImage = `url(${e.target.result})`;
+                previewContainer.style.backgroundSize = "cover";
+                previewContainer.style.backgroundPosition = "center";
+                previewIcon.style.display = "none";
+                btnRemovePhoto.style.display = "block";
+                validarCampo(previewContainer, true, "error-foto");
+            };
             reader.readAsDataURL(file);
         }
     });
 
-    // --- 3.1 LÓGICA PARA ELIMINAR LA FOTO ---
-    if (btnRemovePhoto) {
-        btnRemovePhoto.addEventListener("click", function(e) {
-            e.stopPropagation(); // Evita que se dispare el click del input a través de la imagen
-            
-            // Limpiar el input de archivo
-            fotoInput.value = "";
-            
-            // Eliminar la imagen del preview
-            const img = document.getElementById("img-preview-active");
-            if(img) img.remove();
-            
-            // Restaurar el icono central, ocultar botón X y volver a borde dashed
-            if(previewIcon) previewIcon.style.display = "block";
-            btnRemovePhoto.style.display = "none";
-            previewContainer.style.borderStyle = "dashed";
-        });
-    }
+    btnRemovePhoto.addEventListener("click", function (e) {
+        e.stopPropagation();
+        fotoInput.value = "";
+        previewContainer.style.backgroundImage = "none";
+        previewIcon.style.display = "block";
+        btnRemovePhoto.style.display = "none";
+        validarCampo(previewContainer, false, "error-foto");
+    });
 
-    // --- 4. LÓGICA DE INTERFAZ (Botones Perro/Gato) ---
+    // Gestión botones Perro/Gato
     tipoButtons.forEach(btn => {
         btn.addEventListener("click", function() {
             tipoButtons.forEach(b => b.classList.remove("active"));
@@ -134,35 +150,58 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // --- 5. GESTIÓN DE MENSAJES Y ENVÍO ---
-    function mostrarMensaje(mensaje, esError = false) {
-        popupTexto.textContent = mensaje;
-        popupTexto.style.color = esError ? "#c0392b" : "#454545";
-        overlay.style.display = "flex";
-    }
+    // --- 7. ENVÍO DEL FORMULARIO (Validación Estricta) ---
+    form.addEventListener("submit", function (e) {
+        // Esto evita que la página se recargue
+        e.preventDefault(); 
 
-    cerrarBoton.addEventListener("click", () => {
-        overlay.style.display = "none";
-        if (envioExitoso) window.location.href = "../index.html";
-    });
+        console.log(e);
 
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        
-        // Validación de campos obligatorios
-        const nombre = document.getElementById("nombre-publicador").value.trim();
-        const email = document.getElementById("email-publicador").value.trim();
-        const provincia = provinciaSelect.value;
-        const localidad = localidadSelect.value;
-        const estado = document.getElementById("estado-animal").value.trim();
+        // Validamos TODOS los campos forzando el error (true)
+        const vNombre = validarCampo(nombreInput, nombreInput.value.trim().length >= 3, "error-nombre", true);
+        const vEmail = validarCampo(emailInput, /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|es)$/i.test(emailInput.value), "error-email", true);
+        const vProv = validarCampo(provinciaSelect, provinciaSelect.value !== "", "error-provincia", true);
+        const vLoc = validarCampo(localidadSelect, localidadSelect.value !== "", "error-municipio", true);
+        const vEstado = validarCampo(estadoInput, estadoInput.value.trim().length >= 10, "error-estado", true);
+        const vFoto = validarCampo(previewContainer, fotoInput.files.length > 0, "error-foto", true);
+        const vPrivacidad = checkPrivacidad.checked;
 
-        if (!nombre || !email || !provincia || !localidad || !estado) {
-            mostrarMensaje("Por favor, rellena todos los campos.", true);
-            return;
+        if (!vPrivacidad) {
+            checkPrivacidad.classList.add('is-invalid');
+        } else {
+            checkPrivacidad.classList.remove('is-invalid');
         }
 
-        // Simulación de envío exitoso
-        envioExitoso = true;
-        mostrarMensaje(`¡Gracias! La publicación de tu ${tipoAnimal.toLowerCase()} se ha enviado correctamente.`);
+        // Si TODO es válido
+        if (vNombre && vEmail && vProv && vLoc && vEstado && vFoto && vPrivacidad) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Publicando...';
+            
+            setTimeout(() => {
+                envioExitoso = true;
+                popupTexto.textContent = `¡Tu ${tipoAnimal.toLowerCase()} ha sido publicado con éxito!`;
+                popupTexto.style.color = "#454545";
+                overlay.style.display = "flex";
+                setTimeout(() => overlay.classList.add("active"), 10);
+            }, 1500);
+        } else {
+            // Scroll al primer error Y poner el foco
+            const primerError = form.querySelector('.is-invalid');
+            if (primerError) {
+                primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Ponemos el cursor dentro para escribir
+                setTimeout(() => {
+                    primerError.focus();
+                }, 500);
+            }
+        }
+    });
+
+    cerrarBoton.addEventListener("click", () => {
+        overlay.classList.remove("active");
+        setTimeout(() => {
+            overlay.style.display = "none";
+            if (envioExitoso) window.location.href = "../index.html";
+        }, 300);
     });
 });

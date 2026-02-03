@@ -1,4 +1,4 @@
-[
+const townsDataRaw = [
   {
     "province": "Teruel",
     "community": "Aragón",
@@ -64879,4 +64879,4 @@
     "communityId": "07",
     "provinceId": "09"
   }
-]
+];
