@@ -8,8 +8,8 @@
    ========================================= */
 :root {
   --bg: #eddfc3;
-  --brown: #a3846c;
-  --brown-dark: #4c3c30;
+  --brown: #96755a;
+  --brown-dark: #9c7d65;
   --text: #454545;
   --light: #f8f0e5;
   --hover: #d8baa3;
@@ -86,7 +86,11 @@ a {
 .title a:hover {
   color: var(--light) !important;
 }
-
+ 
+/*Seccion 'quienes somos' del index.html*/
+.container {
+  font-size: 1.2rem;
+}
 /* =========================================
    BOTONES Y NAVEGACIÓN
    ========================================= */
@@ -142,6 +146,9 @@ a {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234c3c30' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
+.form-check-label {
+  color: var(--white);
+}
 /* =========================================
    CARDS DE NAVEGACIÓN (INDEX)
    ========================================= */
@@ -209,7 +216,7 @@ a {
 
 .pet-back {
   background-color: var(--brown);
-  color: var(--light);
+  color: var(--white);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
@@ -223,11 +230,16 @@ a {
   font-family: var(--font-display);
   font-size: 1.2rem;
   margin: 0.5rem 0 0.2rem;
-  color: var(--bg);
+  color: var(--white);
   text-shadow: 1px 1px 2px var(--brown-dark);
 }
 
-.pet-back h4 { font-size: 0.8rem; margin-bottom: 0.5rem; opacity: 0.9; }
+.pet-back h4 { 
+  font-size: 0.8rem; 
+  margin-bottom: 0.5rem; 
+  opacity: 0.9; 
+  color: var(--white);
+}
 
 .pet-description {
   font-size: 0.75rem;
@@ -365,9 +377,9 @@ a {
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
-  border: 5px solid var(--brown);
+ 
 }
-.choice-circle:hover { background-color: var(--brown); transform: scale(1.05); border-color: var(--brown-dark); }
+.choice-circle:hover { background-color: var(--brown); transform: scale(1.05); }
 .choice-icon { width: 60%; height: 60%; fill: var(--brown); transition: fill 0.3s; }
 .choice-circle:hover .choice-icon { fill: var(--light); }
 

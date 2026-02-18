@@ -33,14 +33,14 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label-custom">Nombre y apellidos</label>
                                     <input type="text" id="nombre-publicador" class="form-input-custom"
-                                        placeholder="Tu nombre completo">
+                                        placeholder="Tu nombre completo" aria-label="pon tu nombre completo">
                                     <p id="error-nombre" class="error-text animate-pulse">El nombre debe tener al menos
                                         3 caracteres.</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label-custom">Correo electrónico</label>
                                     <input type="email" id="email-publicador" class="form-input-custom"
-                                        placeholder="ejemplo@correo.com" required />
+                                        placeholder="ejemplo@correo.com" required aria-label="pon tu correo electrónico"/>
                                     <p id="error-email" class="error-text animate-pulse">Introduce un email válido (.com
                                         o .es).</p>
                                 </div>
@@ -79,7 +79,7 @@
                             <div class="mb-4">
                                 <label class="form-label-custom">Estado del animal</label>
                                 <textarea id="estado-animal" class="form-input-custom" style="height: 120px;"
-                                    placeholder="Describe detalladamente el estado y dónde fue encontrado..."></textarea>
+                                    placeholder="Describe detalladamente el estado y dónde fue encontrado..." aria-label="describe el estado y donde fue encontrado"></textarea>
                                 <p id="error-estado" class="error-text animate-pulse">Debes darnos mas Informacion.</p>
                             </div>
 
@@ -101,7 +101,7 @@
                                 <p id="error-foto" class="error-text animate-pulse"
                                     style="display:none; margin-top:0.5rem;">Es obligatorio adjuntar una foto.</p>
 
-                                <input type="file" id="input-foto" style="display: none;" accept="image/*">
+                                <input type="file" id="input-foto" style="display: none;" accept="image/*" aria-label="introduce una foto del animal encontrado">
                                 <button type="button" class="btn-submit py-3 w-100 mt-2"
                                     onclick="document.getElementById('input-foto').click()">
                                     Seleccionar foto
@@ -114,7 +114,7 @@
                                 style="width: 18px; height: 18px; cursor: pointer;">
                             <label class="form-check-label" for="check-privacidad" style="cursor: pointer;">
                                 He leído y acepto la <a href="../HTML/privacidad.html" target="_blank"
-                                    class="footer-link"><u>Política de privacidad</u></a>
+                                    class="footer-link" aria-label="marca la casilla de la politica de privacidad para continuar"><u>Política de privacidad</u></a>
                             </label>
                         </div>
 
