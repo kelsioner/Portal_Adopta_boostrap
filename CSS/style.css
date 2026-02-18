@@ -9,7 +9,7 @@
 :root {
   --bg: #eddfc3;
   --brown: #96755a;
-  --brown-dark: #9c7d65;
+  --brown-dark: #634f40;
   --text: #454545;
   --light: #f8f0e5;
   --hover: #d8baa3;
@@ -438,8 +438,18 @@ a {
 /* =========================================
    FOOTER Y POPUPS
    ========================================= */
-.footer { background-color: var(--brown); color: var(--light); text-align: center; padding: 1rem; margin-top: auto; }
-.footer p { margin: 0; font-size: 0.8rem; }
+.footer { 
+  background-color: var(--brown); 
+  color: var(--light); 
+  text-align: center; 
+  padding: 1rem; 
+  margin-top: auto; 
+}
+
+.footer p { 
+  margin: 0; 
+  font-size: 0.8rem; 
+}
 
 .confirmacion-overlay {
   position: fixed;
@@ -461,6 +471,31 @@ a {
   transition: background-color 0.2s;
 }
 .btn-cerrar-popup:hover { background-color: var(--brown-dark); }
+
+/* =========================================
+   SELLO ACCESIBILIDAD (WAVE)
+   ========================================= */
+.footer {
+    position: relative; /* Necesario para posicionamiento */
+}
+
+.footer::after {
+    content: ""; /* Obligatorio para que se muestre */
+    display: block;
+    height: 30px;  
+    
+    /* Configuración de la imagen */
+    background-image: url("../img/sello-accesibilidad.png");
+    background-size: contain; /* Ajusta la imagen sin deformarla */
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    width: 100px;
+    height: 50px;
+}
 
 /* =========================================
    MEDIA QUERIES
